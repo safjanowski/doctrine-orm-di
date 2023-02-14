@@ -2,7 +2,7 @@
 // list_bugs_array.php
 require_once "bootstrap.php";
 
-$dql = "SELECT b, e, r, p FROM Bug b JOIN b.engineer e ".
+$dql = "SELECT b, e, r, p FROM App\Bug b JOIN b.engineer e ".
     "JOIN b.reporter r JOIN b.products p ORDER BY b.created DESC";
 $query = $entityManager->createQuery($dql);
 $bugs = $query->getArrayResult();

@@ -2,7 +2,7 @@
 // products.php
 require_once "bootstrap.php";
 
-$dql = "SELECT p.id, p.name, count(b.id) AS openBugs FROM Bug b ".
+$dql = "SELECT p.id, p.name, count(b.id) AS openBugs FROM App\Bug b ".
        "JOIN b.products p WHERE b.status = 'NEW' GROUP BY p.id";
 $productBugs = $entityManager->createQuery($dql)->getScalarResult();
 

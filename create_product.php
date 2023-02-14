@@ -4,7 +4,7 @@ require_once "bootstrap.php";
 
 $newProductName = $argv[1];
 
-$product = new Product();
+$product = new App\Product();
 $product->setName($newProductName);
 
 $entityManager->persist($product);

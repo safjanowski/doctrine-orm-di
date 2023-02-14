@@ -4,7 +4,7 @@ require_once "bootstrap.php";
 
 $newUsername = $argv[1];
 
-$user = new User();
+$user = new App\User();
 $user->setName($newUsername);
 
 $entityManager->persist($user);

@@ -2,7 +2,7 @@
 // list_bugs_repository.php
 require_once "bootstrap.php";
 
-$bugs = $entityManager->getRepository('Bug')->getRecentBugs();
+$bugs = $entityManager->getRepository(App\Bug::class)->getRecentBugs();
 
 foreach($bugs AS $bug) {
     echo $bug->getDescription()." - ".$bug->getCreated()->format('d.m.Y')."\n";

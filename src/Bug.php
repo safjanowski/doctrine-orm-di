@@ -1,7 +1,11 @@
 <?php
 
+namespace App;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+
+
 
 #[ORM\Entity(repositoryClass: BugRepository::class)]
 #[ORM\Table(name: 'bugs')]
@@ -47,7 +51,7 @@ class Bug
         $this->description = $description;
     }
 
-    public function setCreated(DateTime $created)
+    public function setCreated(\DateTime $created)
     {
         $this->created = $created;
     }

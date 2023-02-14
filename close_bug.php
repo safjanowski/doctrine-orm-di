@@ -4,7 +4,7 @@ require_once "bootstrap.php";
 
 $theBugId = $argv[1];
 
-$bug = $entityManager->find("Bug", (int)$theBugId);
+$bug = $entityManager->find(App\Bug::class, (int)$theBugId);
 $bug->close();
 
 $entityManager->flush();

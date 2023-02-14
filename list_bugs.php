@@ -2,7 +2,7 @@
 // list_bugs.php
 require_once "bootstrap.php";
 
-$dql = "SELECT b, e, r FROM Bug b JOIN b.engineer e JOIN b.reporter r ORDER BY b.created DESC";
+$dql = "SELECT b, e, r FROM App\Bug b JOIN b.engineer e JOIN b.reporter r ORDER BY b.created DESC";
 
 $query = $entityManager->createQuery($dql);
 $query->setMaxResults(30);

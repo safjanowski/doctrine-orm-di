@@ -2,7 +2,7 @@
 // list_products.php
 require_once "bootstrap.php";
 
-$productRepository = $entityManager->getRepository('Product');
+$productRepository = $entityManager->getRepository(App\Product::class);
 $products = $productRepository->findAll();
 
 foreach ($products as $product) {
