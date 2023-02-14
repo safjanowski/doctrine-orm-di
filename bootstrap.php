@@ -1,20 +1,20 @@
 <?php
-use Doctrine\ORM\Tools\Setup;
+
+use Doctrine\DBAL\DriverManager;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\ORMSetup;
 
 require_once "vendor/autoload.php";
 
 // Create a simple "default" Doctrine ORM configuration for Annotation Mapping
 $isDevMode = true;
-$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src"), $isDevMode);
-// or if you prefer yaml or XML
-//$config = Setup::createYAMLMetadataConfiguration(array(__DIR__."/config/yaml"), $isDevMode);
-//$config = Setup::createXMLMetadataConfiguration(array(__DIR__."/config/xml"), $isDevMode);
+$config = ORMSetup::createAttributeMetadataConfiguration([__DIR__."/src"], $isDevMode);
 
 // database configuration parameters
-$conn = array(
+$connection = DriverManager::getConnection([
     'driver' => 'pdo_sqlite',
     'path' => __DIR__ . '/db.sqlite',
-);
+], $config);
 
 // obtaining the entity manager
-$entityManager = \Doctrine\ORM\EntityManager::create($conn, $config);
+$entityManager = new EntityManager($connection, $config);

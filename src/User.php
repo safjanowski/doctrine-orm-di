@@ -1,34 +1,24 @@
 <?php
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @Entity @Table(name="users")
- */
+#[ORM\Entity]
+#[ORM\Table(name: 'users')]
 class User
 {
-    /**
-     * @Id @GeneratedValue @Column(type="integer")
-     * @var string
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     protected $id;
 
-    /**
-     * @Column(type="string")
-     * @var string
-     */
+    #[ORM\Column(type: 'string')]
     protected $name;
 
-    /**
-     * @OneToMany(targetEntity="Bug", mappedBy="reporter")
-     * @var Bug[]
-     */
+    #[ORM\ManyToMany(targetEntity: Bug::class, mappedBy: 'reporter')]
     protected $reportedBugs = null;
 
-    /**
-     * @OneToMany(targetEntity="Bug", mappedBy="engineer")
-     * @var Bug[]
-     */
+    #[ORM\ManyToMany(targetEntity: Bug::class, mappedBy: 'engineer')]
     protected $assignedBugs = null;
 
     public function __construct()

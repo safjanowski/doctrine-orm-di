@@ -1,43 +1,32 @@
 <?php
-use Doctrine\Common\Collections\ArrayCollection;
 
-/**
- * @Entity(repositoryClass="BugRepository") @Table(name="bugs")
- */
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity(repositoryClass: BugRepository::class)]
+#[ORM\Table(name: 'bugs')]
 class Bug
 {
-    /**
-     * @Id @Column(type="integer") @GeneratedValue
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer')]
+    #[ORM\GeneratedValue]
     protected $id;
-    /**
-     * @Column(type="string")
-     */
+    #[ORM\Column(type: 'string')]
     protected $description;
-    /**
-     * @Column(type="datetime")
-     */
+    #[ORM\Column(type: 'datetime')]
     protected $created;
-    /**
-     * @Column(type="string")
-     */
+    #[ORM\Column(type: 'string')]
     protected $status;
 
-    /**
-     * @ManyToOne(targetEntity="User", inversedBy="assignedBugs")
-     */
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'assignedBugs')]
     protected $engineer;
 
-    /**
-     * @ManyToOne(targetEntity="User", inversedBy="reportedBugs")
-     */
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'reportedBugs')]
     protected $reporter;
 
-    /**
-     * @ManyToMany(targetEntity="Product")
-     */
+    #[ORM\ManyToMany(targetEntity: Product::class)]
     protected $products;
-    
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
