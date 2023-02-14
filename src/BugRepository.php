@@ -6,7 +6,8 @@ use Doctrine\ORM\EntityRepository;
 
 class BugRepository extends EntityRepository
 {
-    public function getRecentBugs($number = 30)
+    /** @return Bug[] */
+    public function getRecentBugs(int $number = 30): array
     {
         $dql = "SELECT b, e, r FROM App\Bug b JOIN b.engineer e JOIN b.reporter r ORDER BY b.created DESC";
 

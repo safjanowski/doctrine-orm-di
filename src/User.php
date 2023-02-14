@@ -3,6 +3,7 @@
 namespace App;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -12,16 +13,16 @@ class User
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    protected $id;
+    private ?int $id;
 
     #[ORM\Column(type: 'string')]
-    protected $name;
+    protected string $name;
 
     #[ORM\ManyToMany(targetEntity: Bug::class, mappedBy: 'reporter')]
-    protected $reportedBugs = null;
+    private ?Collection $reportedBugs = null;
 
     #[ORM\ManyToMany(targetEntity: Bug::class, mappedBy: 'engineer')]
-    protected $assignedBugs = null;
+    private ?Collection $assignedBugs = null;
 
     public function __construct()
     {
@@ -29,27 +30,27 @@ class User
         $this->assignedBugs = new ArrayCollection();
     }
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName($name)
+    public function setName($name): void
     {
         $this->name = $name;
     }
 
-    public function addReportedBug($bug)
+    public function addReportedBug($bug): void
     {
         $this->reportedBugs[] = $bug;
     }
 
-    public function assignedToBug($bug)
+    public function assignedToBug($bug): void
     {
         $this->assignedBugs[] = $bug;
     }

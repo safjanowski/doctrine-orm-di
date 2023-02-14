@@ -11,21 +11,22 @@ class Product
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    protected $id;
-    #[ORM\Column(type: 'string')]
-    protected $name;
+    private ?int $id;
 
-    public function getId()
+    #[ORM\Column(type: 'string')]
+    private string $name;
+
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName($name)
+    public function setName($name): void
     {
         $this->name = $name;
     }
