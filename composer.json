@@ -1,4 +1,6 @@
 {
+    "version": "1.0.0",
+    "name": "safjanowsi/doctrine-orm-di",
     "require": {
         "php": ">=8.1",
         "ext-pdo_sqlite": "*",

@@ -18,6 +18,14 @@ Crete DB
 $ php bin/doctrine orm:schema-tool:create
 ```
 
+## Execute commands
+
+### List available commands
+
+```bash
+$ php bin/console
+```
+
 ## Credentials
 
 Source repository https://github.com/doctrine/doctrine2-orm-tutorial.git

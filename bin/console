@@ -1,0 +1,35 @@
+#!/usr/bin/env php
+<?php
+
+use App\CloseBug;
+use App\CreateBug;
+use App\CreateProduct;
+use App\CreateUser;
+use App\Dashboard;
+use App\ListBugsArray;
+use App\ListBugsRepository;
+use App\ListProducts;
+use App\Products;
+use App\ShowBug;
+use App\ShowProduct;
+use App\UpdateProduct;
+use Symfony\Component\Console\Application;
+
+require __DIR__ . '/../bootstrap.php';
+
+$application = new Application('Doctrine ORM DI', '1.0.0');
+$application->addCommands([
+    new CloseBug($entityManager),
+    new CreateBug($entityManager),
+    new CreateProduct($entityManager),
+    new CreateUser($entityManager),
+    new Dashboard($entityManager),
+    new ListBugsArray($entityManager),
+    new ListBugsRepository($entityManager),
+    new ListProducts($entityManager),
+    new Products($entityManager),
+    new ShowBug($entityManager),
+    new ShowProduct($entityManager),
+    new UpdateProduct($entityManager),
+]);
+$application->run();
