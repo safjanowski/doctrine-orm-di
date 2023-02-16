@@ -5,7 +5,9 @@
         "php": ">=8.1",
         "ext-pdo_sqlite": "*",
         "doctrine/orm": "2.*",
-        "symfony/cache": "^6.2"
+        "symfony/cache": "^6.2",
+        "symfony/dependency-injection": "^6.2",
+        "symfony/config": "^6.2"
     },
     "autoload": {
         "psr-4": {

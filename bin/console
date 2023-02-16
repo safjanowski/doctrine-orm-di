@@ -1,35 +1,23 @@
 #!/usr/bin/env php
 <?php
 
-use App\CloseBug;
-use App\CreateBug;
-use App\CreateProduct;
-use App\CreateUser;
-use App\Dashboard;
-use App\ListBugsArray;
-use App\ListBugsRepository;
-use App\ListProducts;
-use App\Products;
-use App\ShowBug;
-use App\ShowProduct;
-use App\UpdateProduct;
 use Symfony\Component\Console\Application;
 
 require __DIR__ . '/../bootstrap.php';
 
 $application = new Application('Doctrine ORM DI', '1.0.0');
 $application->addCommands([
-    new CloseBug($entityManager),
-    new CreateBug($entityManager),
-    new CreateProduct($entityManager),
-    new CreateUser($entityManager),
-    new Dashboard($entityManager),
-    new ListBugsArray($entityManager),
-    new ListBugsRepository($entityManager),
-    new ListProducts($entityManager),
-    new Products($entityManager),
-    new ShowBug($entityManager),
-    new ShowProduct($entityManager),
-    new UpdateProduct($entityManager),
+    $containerBuilder->get('app.close_bug'),
+    $containerBuilder->get('app.create_bug'),
+    $containerBuilder->get('app.create_product'),
+    $containerBuilder->get('app.create_user'),
+    $containerBuilder->get('app.dashboard'),
+    $containerBuilder->get('app.list_bugs_array'),
+    $containerBuilder->get('app.list_bugs_repository'),
+    $containerBuilder->get('app.list_products'),
+    $containerBuilder->get('app.products'),
+    $containerBuilder->get('app.show_bug'),
+    $containerBuilder->get('app.show_product'),
+    $containerBuilder->get('app.update_product'),
 ]);
 $application->run();
