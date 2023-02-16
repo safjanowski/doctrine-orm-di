@@ -2,8 +2,8 @@
 
 use App\CloseBug;
 use App\CreateBug;
-use App\CreateUser;
 use App\CreateProduct;
+use App\CreateUser;
 use App\Dashboard;
 use App\ListBugsArray;
 use App\ListBugsRepository;
@@ -21,6 +21,7 @@ return function (ContainerConfigurator $containerConfigurator) {
     $inflector = InflectorFactory::create()->build();
     foreach ([CloseBug::class, CreateBug::class, CreateUser::class, CreateProduct::class, Dashboard::class, ListBugsArray::class, ListBugsRepository::class, ListProducts::class, Products::class, ShowBug::class, ShowProduct::class, UpdateProduct::class] as $class) {
         $services->set(str_replace('\\', '.', $inflector->tableize($class)), $class)
-            ->args([service('doctrine.orm.entity_manager')]);
+            ->args([service('doctrine.orm.entity_manager')])
+            ->tag('console.command');
     }
 };

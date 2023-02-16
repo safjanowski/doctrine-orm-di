@@ -6,18 +6,8 @@ use Symfony\Component\Console\Application;
 require __DIR__ . '/../bootstrap.php';
 
 $application = new Application('Doctrine ORM DI', '1.0.0');
-$application->addCommands([
-    $containerBuilder->get('app.close_bug'),
-    $containerBuilder->get('app.create_bug'),
-    $containerBuilder->get('app.create_product'),
-    $containerBuilder->get('app.create_user'),
-    $containerBuilder->get('app.dashboard'),
-    $containerBuilder->get('app.list_bugs_array'),
-    $containerBuilder->get('app.list_bugs_repository'),
-    $containerBuilder->get('app.list_products'),
-    $containerBuilder->get('app.products'),
-    $containerBuilder->get('app.show_bug'),
-    $containerBuilder->get('app.show_product'),
-    $containerBuilder->get('app.update_product'),
-]);
+foreach ($containerBuilder->findTaggedServiceIds('console.command') as $id => $_) {
+    $application->add($containerBuilder->get($id));
+}
+
 $application->run();
